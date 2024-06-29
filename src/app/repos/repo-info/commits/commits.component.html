@@ -1,0 +1,105 @@
+<div class="commits-form">
+  <mat-form-field class="commits-form__item">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      type="text"
+      [formControl]="searchBox"
+      placeholder="Search"
+    />
+  </mat-form-field>
+</div>
+
+<ng-template #empty>
+  <div *ngIf="(query$ | async) && !loading()" class="table__placeholder">
+    <p>No result</p>
+  </div>
+</ng-template>
+
+<div *ngIf="result$ | async as result; else empty" class="table">
+  <rw-loader [loading]="loading()"></rw-loader>
+  <mat-table [dataSource]="result">
+    <ng-container matColumnDef="commitMessage">
+      <mat-header-cell
+        class="table__cell table__cell--header"
+        *matHeaderCellDef
+      >
+        Message
+      </mat-header-cell>
+      <mat-cell class="table__cell" *matCellDef="let commit">
+        <a [href]="commit.url" class="link">{{ commit.commit.message }}</a>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="commitLink">
+      <mat-header-cell
+        class="table__cell table__cell--header"
+        *matHeaderCellDef
+      >
+        Link
+      </mat-header-cell>
+      <mat-cell class="table__cell" *matCellDef="let commit">
+        <a [href]="commit.url" class="link">{{ commit.sha }}</a>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ownerAvatar">
+      <mat-header-cell
+        class="table__cell table__cell--header"
+        *matHeaderCellDef
+      >
+        Owner
+      </mat-header-cell>
+      <mat-cell class="table__cell" *matCellDef="let commit">
+        <img
+          *ngIf="commit.author?.avatar_url"
+          [src]="commit.author?.avatar_url"
+          alt="Owner Avatar"
+          class="commit__avatar"
+        />
+        <div class="commit__email">
+          <a [href]="commit.author?.email || commit.commit?.committer?.email">{{
+            commit.author?.email || commit.commit?.committer?.email
+          }}</a>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="creationDate">
+      <mat-header-cell
+        class="table__cell table__cell--header"
+        *matHeaderCellDef
+      >
+        Creation Date
+      </mat-header-cell>
+      <mat-cell class="table__cell" *matCellDef="let commit">
+        {{ commit.commit.committer?.date | date: "dd.MM.yyyy, hh:mm" }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="[
+        'commitMessage',
+        'commitLink',
+        'ownerAvatar',
+        'creationDate',
+      ]"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="
+        let commit;
+        columns: ['commitMessage', 'commitLink', 'ownerAvatar', 'creationDate']
+      "
+    ></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    class="table__paginator"
+    (page)="onPageChange($event)"
+    [disabled]="result.length < paging().perPage"
+    [length]="100"
+    [pageSize]="paging().perPage"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>
