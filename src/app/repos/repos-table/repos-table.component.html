@@ -1,6 +1,6 @@
 <mat-table class="table" [dataSource]="data">
   <ng-container matColumnDef="name">
-    <mat-header-cell class="table__header-cell" *matHeaderCellDef
+    <mat-header-cell class="table__cell--header" *matHeaderCellDef
       >Name</mat-header-cell
     >
     <mat-cell class="table__cell" *matCellDef="let repo">{{
@@ -9,7 +9,7 @@
   </ng-container>
 
   <ng-container matColumnDef="description">
-    <mat-header-cell class="table__header-cell" *matHeaderCellDef
+    <mat-header-cell class="table__cell--header" *matHeaderCellDef
       >Description</mat-header-cell
     >
     <mat-cell class="table__cell" *matCellDef="let repo">{{
@@ -18,7 +18,7 @@
   </ng-container>
 
   <ng-container matColumnDef="stars">
-    <mat-header-cell class="table__header-cell" *matHeaderCellDef
+    <mat-header-cell class="table__cell--header" *matHeaderCellDef
       >Stars</mat-header-cell
     >
     <mat-cell class="table__cell" *matCellDef="let repo">{{
@@ -27,7 +27,7 @@
   </ng-container>
 
   <ng-container matColumnDef="avatar">
-    <mat-header-cell class="table__header-cell" *matHeaderCellDef
+    <mat-header-cell class="table__cell--header" *matHeaderCellDef
       >Owner Avatar</mat-header-cell
     >
     <mat-cell class="table__cell" *matCellDef="let repo">
@@ -40,7 +40,7 @@
   </ng-container>
 
   <ng-container matColumnDef="creationDate">
-    <mat-header-cell class="table__header-cell" *matHeaderCellDef
+    <mat-header-cell class="table__cell--header" *matHeaderCellDef
       >Creation Date</mat-header-cell
     >
     <mat-cell class="table__cell" *matCellDef="let repo">
@@ -49,7 +49,7 @@
   </ng-container>
 
   <mat-header-row
-    class="table__row--header"
+    class="table__row table__row--header"
     *matHeaderRowDef="[
       'name',
       'description',

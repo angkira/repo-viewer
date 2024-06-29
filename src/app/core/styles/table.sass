@@ -20,68 +20,19 @@ $row-height: 80px
 $row-padding: 10px
 
 .table
+  position: relative
   width: $table-width
   max-width: $table-max-width
   border-collapse: collapse
   overflow: auto
-
-  &__cell
-    display: flex
-    padding: 0 10px
-    border: none
-    text-align: center
-    max-height: $cell-max-height
-    overflow: hidden
-    text-overflow: ellipsis
-    white-space: normal
-    justify-content: center
-    flex-wrap: nowrap
-    flex-direction: row
-    align-items: center
-
-    &__header-cell
-      display: inline-block
-      background-color: $header-cell-bg-color
-      font-weight: $header-cell-font-weight
-      text-align: $cell-text-align
-      & > div
-        display: flex
-        cursor: pointer
-        align-items: center
-        justify-content: center
-
-    &__row
-      height: $row-height
-      padding: $row-padding
-      transition: background-color 0.2s
-      cursor: pointer
-
-      &:hover
-        background-color: #f5f5f5
-
-      &--header
-        position: sticky
-        top: 150px
-
-    &__placeholder
-      display: flex
-      justify-content: center
-      align-items: center
-      height: 100px
-      width: 100%
-
-    &__table
-      margin-top: $table-margin-top
-      padding: $table-padding
-      height: $table-height
-      overflow: auto
+  height: calc(100vh - 240px)
 
   &__cell
     display: flex
     padding: 10px
     border: none
     text-align: center
-    max-height: 72px
+    height: $row-height !important
     overflow: hidden
     text-overflow: ellipsis
     white-space: normal
@@ -90,26 +41,32 @@ $row-padding: 10px
     flex-direction: row
     align-items: center
 
-  &__header-cell
-    display: inline-block
-    background-color: $header-cell-bg-color
-    font-weight: $header-cell-font-weight
-    text-align: $cell-text-align
-    line-height: 3.5rem
+    &--header
+      display: inline-block
+      background-color: $header-cell-bg-color
+      font-weight: $header-cell-font-weight
+      text-align: $cell-text-align
+      line-height: 3.5rem
 
-    & > div
-      display: flex
-      cursor: pointer
-      align-items: center
-      justify-content: center
+      & > div
+        display: flex
+        cursor: pointer
+        align-items: center
+        justify-content: center
 
   &__row
-    height: $row-height
+    height: $row-height !important
+    border: none
     padding: $row-padding
     transition: background-color 0.2s
     cursor: pointer
 
     &:hover
+      background-color: #f5f5f5
+
+    &--header
+      position: sticky
+      top: 0
       background-color: #f5f5f5
 
   &__placeholder
