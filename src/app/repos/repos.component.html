@@ -1,0 +1,23 @@
+<div class="repos-wrapper">
+  <rw-repos-filter
+    class="repos-filter"
+    [params]="params$ | async"
+    (paramsChange)="onParamsChange($event)"
+  >
+  </rw-repos-filter>
+  <ng-template #empty>
+    <div
+      *ngIf="(params$ | async)?.query && !loading()"
+      class="repos-table__placeholder"
+    >
+      <p>No result</p>
+    </div>
+  </ng-template>
+
+  <div *ngIf="result$ | async as result; else empty" class="repos-table">
+    <rw-loader [loading]="loading()"></rw-loader>
+    <rw-repos-table [data]="result"></rw-repos-table>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
