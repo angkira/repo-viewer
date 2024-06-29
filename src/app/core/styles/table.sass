@@ -1,0 +1,120 @@
+$table-width: 100%
+$table-max-width: 1600px
+$table-margin-top: 20px
+$table-padding: 20px
+$table-height: 70vh
+
+$cell-padding: 10px
+$cell-border: none
+$cell-text-align: center
+$cell-max-height: 50px
+$cell-max-width: 180px
+$cell-overflow: hidden
+$cell-text-overflow: ellipsis
+$cell-white-space: normal
+
+$header-cell-bg-color: #f5f5f5
+$header-cell-font-weight: bold
+
+$row-height: 80px
+$row-padding: 10px
+
+.table
+  width: $table-width
+  max-width: $table-max-width
+  border-collapse: collapse
+  overflow: auto
+
+  &__cell
+    display: flex
+    padding: 0 10px
+    border: none
+    text-align: center
+    max-height: $cell-max-height
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: normal
+    justify-content: center
+    flex-wrap: nowrap
+    flex-direction: row
+    align-items: center
+
+    &__header-cell
+      display: inline-block
+      background-color: $header-cell-bg-color
+      font-weight: $header-cell-font-weight
+      text-align: $cell-text-align
+      & > div
+        display: flex
+        cursor: pointer
+        align-items: center
+        justify-content: center
+
+    &__row
+      height: $row-height
+      padding: $row-padding
+      transition: background-color 0.2s
+      cursor: pointer
+
+      &:hover
+        background-color: #f5f5f5
+
+      &--header
+        position: sticky
+        top: 150px
+
+    &__placeholder
+      display: flex
+      justify-content: center
+      align-items: center
+      height: 100px
+      width: 100%
+
+    &__table
+      margin-top: $table-margin-top
+      padding: $table-padding
+      height: $table-height
+      overflow: auto
+
+  &__cell
+    display: flex
+    padding: 10px
+    border: none
+    text-align: center
+    max-height: 72px
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: normal
+    justify-content: center
+    flex-wrap: nowrap
+    flex-direction: row
+    align-items: center
+
+  &__header-cell
+    display: inline-block
+    background-color: $header-cell-bg-color
+    font-weight: $header-cell-font-weight
+    text-align: $cell-text-align
+    line-height: 3.5rem
+
+    & > div
+      display: flex
+      cursor: pointer
+      align-items: center
+      justify-content: center
+
+  &__row
+    height: $row-height
+    padding: $row-padding
+    transition: background-color 0.2s
+    cursor: pointer
+
+    &:hover
+      background-color: #f5f5f5
+
+  &__placeholder
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 100px
+    width: 100%
