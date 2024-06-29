@@ -1,0 +1,22 @@
+<ng-template #loader><rw-loader [loading]="true" /></ng-template>
+
+<mat-card class="repo-info" *ngIf="repoInfo$ | async as repo; else loader">
+  <mat-card-actions class="repo-info__actions">
+    <button mat-button secondary routerLink="../">
+      <mat-icon fontIcon="arrow_back"></mat-icon>
+      <span class="text">Return to the repos</span>
+    </button>
+  </mat-card-actions>
+  <mat-card-header class="repo-info__header">
+    <div mat-card-avatar class="repo-info__avatar">
+      <img [src]="repo.owner.avatar_url" alt="Owner Avatar" />
+    </div>
+    <mat-card-title class="repo-info__title">{{ repo.name }}</mat-card-title>
+    <mat-card-subtitle class="repo-info__subtitle"
+      >{{ repo.stargazers_count }} Stars</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content class="repo-info__content">
+    <router-outlet></router-outlet>
+  </mat-card-content>
+</mat-card>
