@@ -1,0 +1,69 @@
+<mat-table class="table" [dataSource]="data">
+  <ng-container matColumnDef="name">
+    <mat-header-cell class="table__header-cell" *matHeaderCellDef
+      >Name</mat-header-cell
+    >
+    <mat-cell class="table__cell" *matCellDef="let repo">{{
+      repo.name
+    }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <mat-header-cell class="table__header-cell" *matHeaderCellDef
+      >Description</mat-header-cell
+    >
+    <mat-cell class="table__cell" *matCellDef="let repo">{{
+      repo.description
+    }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="stars">
+    <mat-header-cell class="table__header-cell" *matHeaderCellDef
+      >Stars</mat-header-cell
+    >
+    <mat-cell class="table__cell" *matCellDef="let repo">{{
+      repo.stargazers_count
+    }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="avatar">
+    <mat-header-cell class="table__header-cell" *matHeaderCellDef
+      >Owner Avatar</mat-header-cell
+    >
+    <mat-cell class="table__cell" *matCellDef="let repo">
+      <img
+        [src]="repo.owner.avatar_url"
+        alt="Owner Avatar"
+        class="repo__avatar"
+      />
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="creationDate">
+    <mat-header-cell class="table__header-cell" *matHeaderCellDef
+      >Creation Date</mat-header-cell
+    >
+    <mat-cell class="table__cell" *matCellDef="let repo">
+      {{ repo.created_at | date: "dd.MM.yyyy" }}
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row
+    class="table__row--header"
+    *matHeaderRowDef="[
+      'name',
+      'description',
+      'stars',
+      'avatar',
+      'creationDate',
+    ]"
+  ></mat-header-row>
+  <mat-row
+    class="table__row"
+    *matRowDef="
+      let row;
+      columns: ['name', 'description', 'stars', 'avatar', 'creationDate']
+    "
+    [routerLink]="['./', row.id]"
+  ></mat-row>
+</mat-table>
