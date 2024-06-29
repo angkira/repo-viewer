@@ -29,7 +29,10 @@ export class CommitsComponent {
     map((query) => query.trim()),
   );
 
-  result$: Observable<Commit[]> = combineLatest(this.query$, this.paging$).pipe(
+  result$: Observable<Commit[]> = combineLatest([
+    this.query$,
+    this.paging$,
+  ]).pipe(
     tap(() => this.loading.set(true)),
     switchMap(([result, paging]) => this.commitsService.search(result, paging)),
     tap(() => setTimeout(() => this.loading.set(false), 100)),
